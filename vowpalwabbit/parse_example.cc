@@ -479,7 +479,9 @@ void substring_to_example(vw* all, example* ae, VW::string_view example)
       VW::string_view tag = all->example_parser->words.back();
       all->example_parser->words.pop_back();
       if (tag.front() == '\'') tag.remove_prefix(1);
-      push_many(ae->tag, tag.begin(), tag.size());
+      // in the following comparison, will s1 use the convert operator to generate a string_view, or will s2 use string's string_view constructor to generate a string?
+
+      if (tag != "ignore") push_many(ae->tag, tag.begin(), tag.size());
     }
   }
 
